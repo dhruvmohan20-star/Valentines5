@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Shreya ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    text-align: center;
+    overflow: hidden;
+    color: white;
+}
+
+h1 {
+    margin-top: 120px;
+    font-size: 42px;
+}
+
+.buttons {
+    margin-top: 50px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 22px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 15px;
+}
+
+#yesBtn {
+    background-color: #ff004f;
+    color: white;
+}
+
+#noBtn {
+    background-color: black;
+    color: white;
+    position: absolute;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Hey Shreya 💖<br>Will you be my Valentine? 🌹</h1>
+
+<div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😜</button>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const music = document.getElementById("bgMusic");
+
+let size = 22;
+
+// Start music on first interaction (browser requirement)
+document.body.addEventListener("click", function() {
+    music.play();
+}, { once: true });
+
+// Make NO button run away and grow YES button
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    size += 5;
+    yesBtn.style.fontSize = size + "px";
+    yesBtn.style.padding = (size/2) + "px " + size + "px";
+});
+
+// YES button click
+yesBtn.addEventListener("click", function() {
+    document.body.innerHTML = `
+        <div style="margin-top:200px;">
+            <h1 style="font-size:50px;">
+                YAYYYY SHREYA ❤️🥰
+            </h1>
+            <h2 style="margin-top:20px;">
+                Nazar na lag jaaye jaanu 😘💖
+            </h2>
+            <h2 style="margin-top:20px;">
+                You just made me the happiest person alive 💍✨
+            </h2>
+        </div>
+    `;
+});
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 300);
+
+</script>
+
+</body>
+</html>
